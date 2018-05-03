@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtsHubAPI", "ArtsHubAPI\ArtsHubAPI.csproj", "{C2F602A6-5E05-48CF-B3F2-DBABEABA3E07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{02E30D33-0311-4CA7-9E7E-DF6D8D3C75E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C021000F-83B9-445C-8EFD-82753FE5F677}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C2F602A6-5E05-48CF-B3F2-DBABEABA3E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2F602A6-5E05-48CF-B3F2-DBABEABA3E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2F602A6-5E05-48CF-B3F2-DBABEABA3E07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E30D33-0311-4CA7-9E7E-DF6D8D3C75E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E30D33-0311-4CA7-9E7E-DF6D8D3C75E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E30D33-0311-4CA7-9E7E-DF6D8D3C75E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E30D33-0311-4CA7-9E7E-DF6D8D3C75E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C021000F-83B9-445C-8EFD-82753FE5F677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C021000F-83B9-445C-8EFD-82753FE5F677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C021000F-83B9-445C-8EFD-82753FE5F677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C021000F-83B9-445C-8EFD-82753FE5F677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

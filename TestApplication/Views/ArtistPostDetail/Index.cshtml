@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DAL.tbl_ArtistPostDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table>
+        <tr>
+            <td>
+                @*<img src="@Url.Action("GetImage","ArtistPostDetail")" alt="Image not found" style="width: 89px; height: 87px;" />
+                <img src="@Url.Content("~\\ArtsHubAPI\\Images\\ArtistPost\\" + @item.PostImage)" style="width: 89px; height: 87px;" />
+                <img src="F:/ASP.NET Projects 1-2-2018\ArtsHubAPI\ArtsHubAPI\Images\Capture.PNG" style="width: 89px; height: 87px;" />
+                <img src="@(Server.MapPath("\\ArtsHubAPI\\Images\\ArtistPost\\" + @item.PostImage))" alt="@(Server.MapPath("\\ArtsHubAPI\\Images\\ArtistPost\\" + @item.PostImage))" style="width: 89px; height: 87px;" />*@
+
+                <img src="" style="width: 89px; height: 87px;" />
+
+                
+            </td>
+        </tr>
+</table>
+
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_ArtistPost.PostDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostImage)
+            this is image
+            @{
+                var x = @Model.FirstOrDefault(z => z.ArtistPostDetailId == 2008);
+            <img src"" alt="x" style="width: 89px; height: 87px" />
+                }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_ArtistPost.PostDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtistPostDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtistPostDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtistPostDetailId })
+        </td>
+    </tr>
+}
+
+</table>
+
