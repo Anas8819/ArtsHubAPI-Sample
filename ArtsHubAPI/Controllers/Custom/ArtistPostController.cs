@@ -20,6 +20,7 @@ namespace ArtsHubAPI.Controllers.Custom
         public IQueryable<tbl_ArtistPost> Gettbl_ArtistPost()
         {
             return db.tbl_ArtistPost
+                .Include(b=>b.tbl_ArtistPostDetail)
                 .Include(b => b.tbl_User);
         }
 

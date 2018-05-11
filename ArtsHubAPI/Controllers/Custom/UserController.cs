@@ -37,6 +37,7 @@ namespace ArtsHubAPI.Controllers.Custom
                 .Include(b => b.tbl_UserDetail)
                 .Include(b => b.tbl_Shipping)
                 .Include(b => b.tbl_ItemOrder)
+                .Include(b=>b.tbl_ArtistPost)
                 .Include(b => b.tbl_User1)
                 .Include(b => b.tbl_User2)
                 .SingleOrDefault(b => b.UserId == id);

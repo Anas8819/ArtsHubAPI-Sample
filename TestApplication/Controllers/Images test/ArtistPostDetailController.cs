@@ -19,7 +19,6 @@ namespace TestApplication.Controllers.Images_test
 {
     public class ArtistPostDetailController : Controller
     {
-        string baseURL = "http://localhost:9048/";
         private ArtsDBEntities db = new ArtsDBEntities();
 
         public Image GetImage()

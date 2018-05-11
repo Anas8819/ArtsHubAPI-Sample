@@ -103,7 +103,7 @@ namespace ArtsHubAPI.Controllers.Custom
             }
             catch(Exception e)
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
             return Ok(tbl_Category);
         }
