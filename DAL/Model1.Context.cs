@@ -18,7 +18,6 @@ namespace DAL
         public ArtsDBEntities()
             : base("name=ArtsDBEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

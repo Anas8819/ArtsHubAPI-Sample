@@ -16,7 +16,7 @@ namespace DAL
     {
         public int PostId { get; set; }
         public int ArtistPostDetailId { get; set; }
-        public string PostImage { get; set; }
+        public byte[] PostImage { get; set; }
     
         public virtual tbl_ArtistPost tbl_ArtistPost { get; set; }
     }

@@ -16,7 +16,7 @@ namespace DAL
     {
         public int AuctionId { get; set; }
         public int AuctionDetailId { get; set; }
-        public string AuctionImage { get; set; }
+        public byte[] AuctionImage { get; set; }
     
         public virtual tbl_Auction tbl_Auction { get; set; }
     }

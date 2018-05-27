@@ -30,8 +30,8 @@ namespace DAL
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
         public string Role { get; set; }
+        public string AspNetUserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ArtistPost> tbl_ArtistPost { get; set; }

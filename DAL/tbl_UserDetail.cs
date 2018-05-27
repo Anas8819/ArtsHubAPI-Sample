@@ -18,7 +18,7 @@ namespace DAL
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public string UserImage { get; set; }
+        public byte[] UserImage { get; set; }
     
         public virtual tbl_User tbl_User { get; set; }
     }

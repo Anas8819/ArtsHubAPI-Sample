@@ -16,7 +16,7 @@ namespace DAL
     {
         public int ItemId { get; set; }
         public int ItemDetailId { get; set; }
-        public string ItemImage { get; set; }
+        public byte[] ItemImage { get; set; }
     
         public virtual tbl_Item tbl_Item { get; set; }
     }
