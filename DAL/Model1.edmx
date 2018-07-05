@@ -86,6 +86,7 @@
           <Property Name="Price" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Discount" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_ItemDetail">
           <Key>
@@ -97,12 +98,12 @@
         </EntityType>
         <EntityType Name="tbl_ItemOrder">
           <Key>
-            <PropertyRef Name="tbl_Item_ItemId" />
-            <PropertyRef Name="tbl_User_UserId" />
+            <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="tbl_Item_ItemId" Type="int" Nullable="false" />
           <Property Name="tbl_User_UserId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_Shipping">
           <Key>
@@ -445,7 +446,7 @@
           </Key>
           <Property Name="PostId" Type="Int32" Nullable="false" />
           <Property Name="ArtistPostDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PostImage" Type="Binary" Nullable="false" />
+          <Property Name="PostImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="tbl_ArtistPost" Relationship="Self.FK_tbl_ArtistPostDetail_tbl_ArtistPost" FromRole="tbl_ArtistPostDetail" ToRole="tbl_ArtistPost" />
         </EntityType>
         <EntityType Name="tbl_Auction">
@@ -470,7 +471,7 @@
           </Key>
           <Property Name="AuctionId" Type="Int32" Nullable="false" />
           <Property Name="AuctionDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AuctionImage" Type="Binary" Nullable="false" />
+          <Property Name="AuctionImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="tbl_Auction" Relationship="Self.FK_tbl_AuctionDetial_tbl_Auction" FromRole="tbl_AuctionDetial" ToRole="tbl_Auction" />
         </EntityType>
         <EntityType Name="tbl_AuctionOrder">
@@ -519,6 +520,7 @@
           <NavigationProperty Name="tbl_ItemDetail" Relationship="Self.FK_tbl_ItemDetail_tbl_Item" FromRole="tbl_Item" ToRole="tbl_ItemDetail" />
           <NavigationProperty Name="tbl_ItemOrder" Relationship="Self.FK_tbl_ItemOrder_tbl_Item" FromRole="tbl_Item" ToRole="tbl_ItemOrder" />
           <NavigationProperty Name="tbl_Shipping" Relationship="Self.FK_tbl_Shipping_tbl_Item" FromRole="tbl_Item" ToRole="tbl_Shipping" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_ItemDetail">
           <Key>
@@ -526,19 +528,19 @@
           </Key>
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="ItemDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemImage" Type="Binary" Nullable="false" />
+          <Property Name="ItemImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_ItemDetail_tbl_Item" FromRole="tbl_ItemDetail" ToRole="tbl_Item" />
         </EntityType>
         <EntityType Name="tbl_ItemOrder">
           <Key>
-            <PropertyRef Name="tbl_Item_ItemId" />
-            <PropertyRef Name="tbl_User_UserId" />
+            <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="tbl_Item_ItemId" Type="Int32" Nullable="false" />
           <Property Name="tbl_User_UserId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_ItemOrder_tbl_Item" FromRole="tbl_ItemOrder" ToRole="tbl_Item" />
           <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_ItemOrder_tbl_User" FromRole="tbl_ItemOrder" ToRole="tbl_User" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="tbl_Shipping">
           <Key>
@@ -582,7 +584,7 @@
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="UserImage" Type="Binary" Nullable="false" />
+          <Property Name="UserImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_UserDetail_tbl_User" FromRole="tbl_UserDetail" ToRole="tbl_User" />
         </EntityType>
         <Association Name="FK_tbl_ArtistPost_tbl_User">
@@ -926,6 +928,7 @@
           <EntitySetMapping Name="tbl_Item">
             <EntityTypeMapping TypeName="ArtsDBModel.tbl_Item">
               <MappingFragment StoreEntitySet="tbl_Item">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
@@ -947,6 +950,7 @@
           <EntitySetMapping Name="tbl_ItemOrder">
             <EntityTypeMapping TypeName="ArtsDBModel.tbl_ItemOrder">
               <MappingFragment StoreEntitySet="tbl_ItemOrder">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="tbl_Item_ItemId" ColumnName="tbl_Item_ItemId" />
                 <ScalarProperty Name="tbl_User_UserId" ColumnName="tbl_User_UserId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -1016,6 +1020,38 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="dccdc15449824f3480312a9e0642b783" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ArtistPost" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ArtistPostDetail" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Auction" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_AuctionDetial" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_AuctionOrder" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Bid" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Category" Width="1.5" PointX="3.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Item" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ItemDetail" Width="1.5" PointX="8" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ItemOrder" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Shipping" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_User" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_UserDetail" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ArtistPost_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ArtistPostDetail_tbl_ArtistPost" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Auction_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionDetial_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionOrder_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Bid_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionOrder_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Bid_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Item_tbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemDetail_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemOrder_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Shipping_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemOrder_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Shipping_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_UserDetail_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.tbl_Follow" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

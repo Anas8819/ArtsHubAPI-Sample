@@ -17,6 +17,7 @@ namespace DAL
         public int tbl_Item_ItemId { get; set; }
         public int tbl_User_UserId { get; set; }
         public int Quantity { get; set; }
+        public int OrderId { get; set; }
     
         public virtual tbl_Item tbl_Item { get; set; }
         public virtual tbl_User tbl_User { get; set; }

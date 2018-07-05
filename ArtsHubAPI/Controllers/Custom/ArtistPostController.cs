@@ -12,6 +12,7 @@ using DAL;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
+    [Authorize]
     public class ArtistPostController : ApiController
     {
         private ArtsDBEntities db = new ArtsDBEntities();

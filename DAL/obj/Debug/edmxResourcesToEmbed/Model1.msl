@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtsDBModelStoreContainer" CdmEntityContainer="ArtsDBEntities">
+    <EntitySetMapping Name="tbl_ArtistPost">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_ArtistPost">
+        <MappingFragment StoreEntitySet="tbl_ArtistPost">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PostDesc" ColumnName="PostDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ArtistPostDetail">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_ArtistPostDetail">
+        <MappingFragment StoreEntitySet="tbl_ArtistPostDetail">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="ArtistPostDetailId" ColumnName="ArtistPostDetailId" />
+          <ScalarProperty Name="PostImage" ColumnName="PostImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Auction">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Auction">
+        <MappingFragment StoreEntitySet="tbl_Auction">
+          <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+          <ScalarProperty Name="AuctionName" ColumnName="AuctionName" />
+          <ScalarProperty Name="AuctionLastDate" ColumnName="AuctionLastDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AuctionDesc" ColumnName="AuctionDesc" />
+          <ScalarProperty Name="StartingBid" ColumnName="StartingBid" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AuctionDetial">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_AuctionDetial">
+        <MappingFragment StoreEntitySet="tbl_AuctionDetial">
+          <ScalarProperty Name="AuctionId" ColumnName="AuctionId" />
+          <ScalarProperty Name="AuctionDetailId" ColumnName="AuctionDetailId" />
+          <ScalarProperty Name="AuctionImage" ColumnName="AuctionImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AuctionOrder">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_AuctionOrder">
+        <MappingFragment StoreEntitySet="tbl_AuctionOrder">
+          <ScalarProperty Name="AuctionOrderId" ColumnName="AuctionOrderId" />
+          <ScalarProperty Name="AuctionOrderDate" ColumnName="AuctionOrderDate" />
+          <ScalarProperty Name="AuctionItemId" ColumnName="AuctionItemId" />
+          <ScalarProperty Name="AuctionOrderTotal" ColumnName="AuctionOrderTotal" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Bid">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Bid">
+        <MappingFragment StoreEntitySet="tbl_Bid">
+          <ScalarProperty Name="AuctionItemId" ColumnName="AuctionItemId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Category">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Category">
+        <MappingFragment StoreEntitySet="tbl_Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Item">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Item">
+        <MappingFragment StoreEntitySet="tbl_Item">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ItemDetail">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_ItemDetail">
+        <MappingFragment StoreEntitySet="tbl_ItemDetail">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemDetailId" ColumnName="ItemDetailId" />
+          <ScalarProperty Name="ItemImage" ColumnName="ItemImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ItemOrder">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_ItemOrder">
+        <MappingFragment StoreEntitySet="tbl_ItemOrder">
+          <ScalarProperty Name="tbl_Item_ItemId" ColumnName="tbl_Item_ItemId" />
+          <ScalarProperty Name="tbl_User_UserId" ColumnName="tbl_User_UserId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Shipping">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Shipping">
+        <MappingFragment StoreEntitySet="tbl_Shipping">
+          <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
+          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="ShippingTotal" ColumnName="ShippingTotal" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_User">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_User">
+        <MappingFragment StoreEntitySet="tbl_User">
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_UserDetail">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_UserDetail">
+        <MappingFragment StoreEntitySet="tbl_UserDetail">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tbl_Follow" TypeName="ArtsDBModel.tbl_Follow" StoreEntitySet="tbl_Follow">
+      <EndProperty Name="tbl_User">
+        <ScalarProperty Name="UserId" ColumnName="tbl_User2_UserId" />
+      </EndProperty>
+      <EndProperty Name="tbl_User1">
+        <ScalarProperty Name="UserId" ColumnName="tbl_User1_UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_ArtistPost">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PostDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_ArtistPost_tbl_User" FromRole="tbl_ArtistPost" ToRole="tbl_User" />
+    <NavigationProperty Name="tbl_ArtistPostDetail" Relationship="Self.FK_tbl_ArtistPostDetail_tbl_ArtistPost" FromRole="tbl_ArtistPost" ToRole="tbl_ArtistPostDetail" />
+  </EntityType>
+  <EntityType Name="tbl_ArtistPostDetail">
+    <Key>
+      <PropertyRef Name="ArtistPostDetailId" />
+    </Key>
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="ArtistPostDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tbl_ArtistPost" Relationship="Self.FK_tbl_ArtistPostDetail_tbl_ArtistPost" FromRole="tbl_ArtistPostDetail" ToRole="tbl_ArtistPost" />
+  </EntityType>
+  <EntityType Name="tbl_Auction">
+    <Key>
+      <PropertyRef Name="AuctionId" />
+    </Key>
+    <Property Name="AuctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AuctionLastDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="AuctionDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StartingBid" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsApproved" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_Auction_tbl_User" FromRole="tbl_Auction" ToRole="tbl_User" />
+    <NavigationProperty Name="tbl_AuctionDetial" Relationship="Self.FK_tbl_AuctionDetial_tbl_Auction" FromRole="tbl_Auction" ToRole="tbl_AuctionDetial" />
+    <NavigationProperty Name="tbl_AuctionOrder" Relationship="Self.FK_tbl_AuctionOrder_tbl_Auction" FromRole="tbl_Auction" ToRole="tbl_AuctionOrder" />
+    <NavigationProperty Name="tbl_Bid" Relationship="Self.FK_tbl_Bid_tbl_Auction" FromRole="tbl_Auction" ToRole="tbl_Bid" />
+  </EntityType>
+  <EntityType Name="tbl_AuctionDetial">
+    <Key>
+      <PropertyRef Name="AuctionDetailId" />
+    </Key>
+    <Property Name="AuctionId" Type="Int32" Nullable="false" />
+    <Property Name="AuctionDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuctionImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tbl_Auction" Relationship="Self.FK_tbl_AuctionDetial_tbl_Auction" FromRole="tbl_AuctionDetial" ToRole="tbl_Auction" />
+  </EntityType>
+  <EntityType Name="tbl_AuctionOrder">
+    <Key>
+      <PropertyRef Name="AuctionOrderId" />
+    </Key>
+    <Property Name="AuctionOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuctionOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AuctionItemId" Type="Int32" Nullable="false" />
+    <Property Name="AuctionOrderTotal" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Auction" Relationship="Self.FK_tbl_AuctionOrder_tbl_Auction" FromRole="tbl_AuctionOrder" ToRole="tbl_Auction" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_AuctionOrder_tbl_User" FromRole="tbl_AuctionOrder" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_Bid">
+    <Key>
+      <PropertyRef Name="AuctionItemId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="AuctionItemId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="BidPrice" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_Auction" Relationship="Self.FK_tbl_Bid_tbl_Auction" FromRole="tbl_Bid" ToRole="tbl_Auction" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_Bid_tbl_User" FromRole="tbl_Bid" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_Item_tbl_Category" FromRole="tbl_Category" ToRole="tbl_Item" />
+  </EntityType>
+  <EntityType Name="tbl_Item">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Discount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Category" Relationship="Self.FK_tbl_Item_tbl_Category" FromRole="tbl_Item" ToRole="tbl_Category" />
+    <NavigationProperty Name="tbl_ItemDetail" Relationship="Self.FK_tbl_ItemDetail_tbl_Item" FromRole="tbl_Item" ToRole="tbl_ItemDetail" />
+    <NavigationProperty Name="tbl_ItemOrder" Relationship="Self.FK_tbl_ItemOrder_tbl_Item" FromRole="tbl_Item" ToRole="tbl_ItemOrder" />
+    <NavigationProperty Name="tbl_Shipping" Relationship="Self.FK_tbl_Shipping_tbl_Item" FromRole="tbl_Item" ToRole="tbl_Shipping" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ItemDetail">
+    <Key>
+      <PropertyRef Name="ItemDetailId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="ItemDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_ItemDetail_tbl_Item" FromRole="tbl_ItemDetail" ToRole="tbl_Item" />
+  </EntityType>
+  <EntityType Name="tbl_ItemOrder">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="tbl_Item_ItemId" Type="Int32" Nullable="false" />
+    <Property Name="tbl_User_UserId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_ItemOrder_tbl_Item" FromRole="tbl_ItemOrder" ToRole="tbl_Item" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_ItemOrder_tbl_User" FromRole="tbl_ItemOrder" ToRole="tbl_User" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="tbl_Shipping">
+    <Key>
+      <PropertyRef Name="ShippingId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ShippingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShippingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShippingTotal" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Item" Relationship="Self.FK_tbl_Shipping_tbl_Item" FromRole="tbl_Shipping" ToRole="tbl_Item" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_Shipping_tbl_User" FromRole="tbl_Shipping" ToRole="tbl_User" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_ArtistPost" Relationship="Self.FK_tbl_ArtistPost_tbl_User" FromRole="tbl_User" ToRole="tbl_ArtistPost" />
+    <NavigationProperty Name="tbl_Auction" Relationship="Self.FK_tbl_Auction_tbl_User" FromRole="tbl_User" ToRole="tbl_Auction" />
+    <NavigationProperty Name="tbl_AuctionOrder" Relationship="Self.FK_tbl_AuctionOrder_tbl_User" FromRole="tbl_User" ToRole="tbl_AuctionOrder" />
+    <NavigationProperty Name="tbl_Bid" Relationship="Self.FK_tbl_Bid_tbl_User" FromRole="tbl_User" ToRole="tbl_Bid" />
+    <NavigationProperty Name="tbl_ItemOrder" Relationship="Self.FK_tbl_ItemOrder_tbl_User" FromRole="tbl_User" ToRole="tbl_ItemOrder" />
+    <NavigationProperty Name="tbl_Shipping" Relationship="Self.FK_tbl_Shipping_tbl_User" FromRole="tbl_User" ToRole="tbl_Shipping" />
+    <NavigationProperty Name="tbl_UserDetail" Relationship="Self.FK_tbl_UserDetail_tbl_User" FromRole="tbl_User" ToRole="tbl_UserDetail" />
+    <NavigationProperty Name="tbl_User1" Relationship="Self.tbl_Follow" FromRole="tbl_User" ToRole="tbl_User1" />
+    <NavigationProperty Name="tbl_User2" Relationship="Self.tbl_Follow" FromRole="tbl_User1" ToRole="tbl_User" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_UserDetail_tbl_User" FromRole="tbl_UserDetail" ToRole="tbl_User" />
+  </EntityType>
+  <Association Name="FK_tbl_ArtistPost_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_ArtistPost" Type="Self.tbl_ArtistPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ArtistPost">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ArtistPostDetail_tbl_ArtistPost">
+    <End Role="tbl_ArtistPost" Type="Self.tbl_ArtistPost" Multiplicity="1" />
+    <End Role="tbl_ArtistPostDetail" Type="Self.tbl_ArtistPostDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ArtistPost">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="tbl_ArtistPostDetail">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Auction_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_Auction" Type="Self.tbl_Auction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_Auction">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_AuctionDetial_tbl_Auction">
+    <End Role="tbl_Auction" Type="Self.tbl_Auction" Multiplicity="1" />
+    <End Role="tbl_AuctionDetial" Type="Self.tbl_AuctionDetial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Auction">
+        <PropertyRef Name="AuctionId" />
+      </Principal>
+      <Dependent Role="tbl_AuctionDetial">
+        <PropertyRef Name="AuctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_AuctionOrder_tbl_Auction">
+    <End Role="tbl_Auction" Type="Self.tbl_Auction" Multiplicity="1" />
+    <End Role="tbl_AuctionOrder" Type="Self.tbl_AuctionOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Auction">
+        <PropertyRef Name="AuctionId" />
+      </Principal>
+      <Dependent Role="tbl_AuctionOrder">
+        <PropertyRef Name="AuctionItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Bid_tbl_Auction">
+    <End Role="tbl_Auction" Type="Self.tbl_Auction" Multiplicity="1" />
+    <End Role="tbl_Bid" Type="Self.tbl_Bid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Auction">
+        <PropertyRef Name="AuctionId" />
+      </Principal>
+      <Dependent Role="tbl_Bid">
+        <PropertyRef Name="AuctionItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_AuctionOrder_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_AuctionOrder" Type="Self.tbl_AuctionOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_AuctionOrder">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Bid_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_Bid" Type="Self.tbl_Bid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_Bid">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Item_tbl_Category">
+    <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="1" />
+    <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="tbl_Item">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ItemDetail_tbl_Item">
+    <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="1" />
+    <End Role="tbl_ItemDetail" Type="Self.tbl_ItemDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="tbl_ItemDetail">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ItemOrder_tbl_Item">
+    <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="1" />
+    <End Role="tbl_ItemOrder" Type="Self.tbl_ItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="tbl_ItemOrder">
+        <PropertyRef Name="tbl_Item_ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Shipping_tbl_Item">
+    <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="1" />
+    <End Role="tbl_Shipping" Type="Self.tbl_Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="tbl_Shipping">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ItemOrder_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_ItemOrder" Type="Self.tbl_ItemOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ItemOrder">
+        <PropertyRef Name="tbl_User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_Shipping_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_Shipping" Type="Self.tbl_Shipping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_Shipping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_UserDetail_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_UserDetail" Type="Self.tbl_UserDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_UserDetail">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_Follow">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="*" />
+    <End Role="tbl_User1" Type="Self.tbl_User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ArtsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_ArtistPost" EntityType="Self.tbl_ArtistPost" />
+    <EntitySet Name="tbl_ArtistPostDetail" EntityType="Self.tbl_ArtistPostDetail" />
+    <EntitySet Name="tbl_Auction" EntityType="Self.tbl_Auction" />
+    <EntitySet Name="tbl_AuctionDetial" EntityType="Self.tbl_AuctionDetial" />
+    <EntitySet Name="tbl_AuctionOrder" EntityType="Self.tbl_AuctionOrder" />
+    <EntitySet Name="tbl_Bid" EntityType="Self.tbl_Bid" />
+    <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
+    <EntitySet Name="tbl_Item" EntityType="Self.tbl_Item" />
+    <EntitySet Name="tbl_ItemDetail" EntityType="Self.tbl_ItemDetail" />
+    <EntitySet Name="tbl_ItemOrder" EntityType="Self.tbl_ItemOrder" />
+    <EntitySet Name="tbl_Shipping" EntityType="Self.tbl_Shipping" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+    <EntitySet Name="tbl_UserDetail" EntityType="Self.tbl_UserDetail" />
+    <AssociationSet Name="FK_tbl_ArtistPost_tbl_User" Association="Self.FK_tbl_ArtistPost_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ArtistPost" EntitySet="tbl_ArtistPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ArtistPostDetail_tbl_ArtistPost" Association="Self.FK_tbl_ArtistPostDetail_tbl_ArtistPost">
+      <End Role="tbl_ArtistPost" EntitySet="tbl_ArtistPost" />
+      <End Role="tbl_ArtistPostDetail" EntitySet="tbl_ArtistPostDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Auction_tbl_User" Association="Self.FK_tbl_Auction_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Auction" EntitySet="tbl_Auction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_AuctionDetial_tbl_Auction" Association="Self.FK_tbl_AuctionDetial_tbl_Auction">
+      <End Role="tbl_Auction" EntitySet="tbl_Auction" />
+      <End Role="tbl_AuctionDetial" EntitySet="tbl_AuctionDetial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_AuctionOrder_tbl_Auction" Association="Self.FK_tbl_AuctionOrder_tbl_Auction">
+      <End Role="tbl_Auction" EntitySet="tbl_Auction" />
+      <End Role="tbl_AuctionOrder" EntitySet="tbl_AuctionOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Bid_tbl_Auction" Association="Self.FK_tbl_Bid_tbl_Auction">
+      <End Role="tbl_Auction" EntitySet="tbl_Auction" />
+      <End Role="tbl_Bid" EntitySet="tbl_Bid" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_AuctionOrder_tbl_User" Association="Self.FK_tbl_AuctionOrder_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_AuctionOrder" EntitySet="tbl_AuctionOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Bid_tbl_User" Association="Self.FK_tbl_Bid_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Bid" EntitySet="tbl_Bid" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Item_tbl_Category" Association="Self.FK_tbl_Item_tbl_Category">
+      <End Role="tbl_Category" EntitySet="tbl_Category" />
+      <End Role="tbl_Item" EntitySet="tbl_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemDetail_tbl_Item" Association="Self.FK_tbl_ItemDetail_tbl_Item">
+      <End Role="tbl_Item" EntitySet="tbl_Item" />
+      <End Role="tbl_ItemDetail" EntitySet="tbl_ItemDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemOrder_tbl_Item" Association="Self.FK_tbl_ItemOrder_tbl_Item">
+      <End Role="tbl_Item" EntitySet="tbl_Item" />
+      <End Role="tbl_ItemOrder" EntitySet="tbl_ItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Shipping_tbl_Item" Association="Self.FK_tbl_Shipping_tbl_Item">
+      <End Role="tbl_Item" EntitySet="tbl_Item" />
+      <End Role="tbl_Shipping" EntitySet="tbl_Shipping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemOrder_tbl_User" Association="Self.FK_tbl_ItemOrder_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ItemOrder" EntitySet="tbl_ItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_Shipping_tbl_User" Association="Self.FK_tbl_Shipping_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Shipping" EntitySet="tbl_Shipping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_UserDetail_tbl_User" Association="Self.FK_tbl_UserDetail_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_UserDetail" EntitySet="tbl_UserDetail" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_Follow" Association="Self.tbl_Follow">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_User1" EntitySet="tbl_User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

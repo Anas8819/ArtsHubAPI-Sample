@@ -1,0 +1,10 @@
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\DAL.dll.config
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\DAL.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\DAL.pdb
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\EntityFramework.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\EntityFramework.xml
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Release\DAL.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Release\DAL.pdb

@@ -12,19 +12,19 @@ namespace ArtsHubAPI
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             string redirectUrl = null;
-            HttpContext context = HttpContext.Current;
-            if (!context.Request.IsSecureConnection)
-            {
-                redirectUrl = context.Request.Url.ToString().Replace("http:", "https:");
-                UriBuilder uri = new UriBuilder(redirectUrl);
-                uri.Port = 44312;
-                context.Response.Redirect(uri.ToString());
-            }
+            //HttpContext context = HttpContext.Current;
+            //if (!context.Request.IsSecureConnection)
+            //{
+            //    redirectUrl = context.Request.Url.ToString().Replace("http:", "https:");
+            //    UriBuilder uri = new UriBuilder(redirectUrl);
+            //    uri.Port = 44312;
+            //    context.Response.Redirect(uri.ToString());
+            //}
 
-            else
-            {
+            //else
+            //{
                 base.OnAuthorization(actionContext);
-            }
+            //}
         }
     }
 }

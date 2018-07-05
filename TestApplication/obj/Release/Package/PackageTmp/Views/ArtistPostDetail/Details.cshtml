@@ -1,0 +1,34 @@
+﻿@model DAL.tbl_ArtistPostDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_ArtistPostDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PostImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_ArtistPost.PostDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_ArtistPost.PostDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtistPostDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

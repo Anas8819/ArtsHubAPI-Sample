@@ -12,6 +12,7 @@ using DAL;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
+    [Authorize]
     public class BidController : ApiController
     {
         private ArtsDBEntities db = new ArtsDBEntities();
@@ -59,7 +60,27 @@ namespace ArtsHubAPI.Controllers.Custom
 
             return Ok(tbl_Bid);
         }
-        
+
+        [HttpGet]
+        [Route("api/Bid/{id}/Bidder")]
+        [ResponseType(typeof(tbl_Auction))]
+        public IHttpActionResult Gettbl_Highest_Bidder(int id)
+        {
+            List<tbl_Bid> tbl_Bid_List = db.tbl_Bid
+                .Include(b => b.tbl_Auction)
+                .Include(b => b.tbl_User).Where(b => b.AuctionItemId == id).ToList();
+
+            string highest = tbl_Bid_List.Max(t => t.BidPrice);
+
+            tbl_Bid tbl_Bid = tbl_Bid_List.FirstOrDefault(t => t.BidPrice == highest);
+            if (tbl_Bid == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(tbl_Bid);
+        }
+
         // POST: api/Bid
         [ResponseType(typeof(tbl_Bid))]
         public IHttpActionResult Posttbl_Bid(tbl_Bid tbl_Bid)

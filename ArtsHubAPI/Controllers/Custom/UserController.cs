@@ -9,9 +9,13 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAL;
+using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
+    [Authorize]
     public class UserController : ApiController
     {
         private ArtsDBEntities db = new ArtsDBEntities();
@@ -26,6 +30,23 @@ namespace ArtsHubAPI.Controllers.Custom
                 .Include(b => b.tbl_ItemOrder)
                 .Include(b => b.tbl_User1)
                 .Include(b => b.tbl_User2);
+        }
+
+        
+        [HttpGet]
+        [Route("api/User/UserData")]
+        public async Task<string> UserData([FromUri]string userName)
+        {
+            var UserManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            try
+            {
+                var user = await UserManager.FindByEmailAsync(userName);
+                return user.Id;
+            }
+            catch
+            {
+                return "0000";
+            }
         }
 
         // GET: api/User/5

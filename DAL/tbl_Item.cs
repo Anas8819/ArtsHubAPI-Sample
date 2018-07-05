@@ -28,6 +28,7 @@ namespace DAL
         public string Price { get; set; }
         public string Discount { get; set; }
         public int CategoryId { get; set; }
+        public int Quantity { get; set; }
     
         public virtual tbl_Category tbl_Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

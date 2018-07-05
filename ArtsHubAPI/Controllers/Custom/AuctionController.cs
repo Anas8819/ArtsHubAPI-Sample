@@ -13,6 +13,7 @@ using System.Web;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
+    [Authorize]
     public class AuctionController : ApiController
     {
         private ArtsDBEntities db = new ArtsDBEntities();
