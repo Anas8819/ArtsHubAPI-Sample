@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAL;
+using System.IO;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
@@ -36,10 +37,25 @@ namespace ArtsHubAPI.Controllers.Custom
         //    return Ok(tbl_ArtistPostDetail);
         //}
 
-        [ResponseType(typeof(tbl_ArtistPostDetail))]
+        [ResponseType(typeof(ArtsHubAPI.Models.ArtistPostConversionModel))]
         public IHttpActionResult Gettbl_ArtistPostDetail_by_Post(int id)
         {
             tbl_ArtistPostDetail tbl_ArtistPostDetail = db.tbl_ArtistPostDetail.FirstOrDefault(t => t.PostId == id);
+
+            byte[] buffer = tbl_ArtistPostDetail.PostImage;
+            ArtsHubAPI.Models.ArtistPostConversionModel UserConversionModel = new Models.ArtistPostConversionModel();
+            string s = System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+            if (s != null)
+            {
+                UserConversionModel.PostImage = s;
+            }
+            else
+            {
+                return BadRequest();
+            }
+            UserConversionModel.ArtistPostDetailId = tbl_ArtistPostDetail.ArtistPostDetailId;
+            UserConversionModel.PostId = tbl_ArtistPostDetail.PostId;
+
             if (tbl_ArtistPostDetail == null)
             {
                 return NotFound();
@@ -84,18 +100,48 @@ namespace ArtsHubAPI.Controllers.Custom
         //}
 
         // POST: api/ArtistPostDetail
-        [ResponseType(typeof(tbl_ArtistPostDetail))]
-        public IHttpActionResult Posttbl_ArtistPostDetail(tbl_ArtistPostDetail tbl_ArtistPostDetail)
+        [ResponseType(typeof(ArtsHubAPI.Models.ArtistPostConversionModel))]
+        public IHttpActionResult Posttbl_ArtistPostDetail(ArtsHubAPI.Models.ArtistPostConversionModel UserConversionModel)
         {
+            tbl_ArtistPostDetail tbl_UserDetail = new tbl_ArtistPostDetail();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.tbl_ArtistPostDetail.Add(tbl_ArtistPostDetail);
-            db.SaveChanges();
+            tbl_UserDetail.ArtistPostDetailId = tbl_UserDetail.ArtistPostDetailId;
+            tbl_UserDetail.PostId = tbl_UserDetail.PostId;
+            byte[] buffer = null;
+            using (var ms = new MemoryStream())
+            {
+                buffer = System.Text.Encoding.UTF8.GetBytes(UserConversionModel.PostImage);
+            }
+            if (buffer != null)
+            {
+                tbl_UserDetail.PostImage = buffer;
+            }
+            else
+            {
+                return BadRequest();
+            }
+            db.tbl_ArtistPostDetail.Add(tbl_UserDetail);
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_ArtistPostDetail.ArtistPostDetailId }, tbl_ArtistPostDetail);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (tbl_ArtistPostDetailExists(tbl_UserDetail.PostId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return CreatedAtRoute("DefaultApi", new { id = tbl_UserDetail.ArtistPostDetailId }, tbl_UserDetail);
         }
 
         //// DELETE: api/ArtistPostDetail/5

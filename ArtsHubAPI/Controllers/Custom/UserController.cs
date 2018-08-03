@@ -12,6 +12,7 @@ using DAL;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
@@ -27,9 +28,7 @@ namespace ArtsHubAPI.Controllers.Custom
                 .Include(b => b.tbl_AuctionOrder)
                 .Include(b => b.tbl_Bid)
                 .Include(b => b.tbl_Shipping)
-                .Include(b => b.tbl_ItemOrder)
-                .Include(b => b.tbl_User1)
-                .Include(b => b.tbl_User2);
+                .Include(b => b.tbl_ItemOrder);
         }
 
         
@@ -49,6 +48,15 @@ namespace ArtsHubAPI.Controllers.Custom
             }
         }
 
+        [HttpGet]
+        [Route("api/User/SetRole")]
+        public void SetRole(string userID,string roleID)
+        {
+            var UserManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            UserManager.AddToRole(userID, roleID);
+            db.SaveChanges();
+        }
+
         // GET: api/User/5
         [ResponseType(typeof(tbl_User))]
         public IHttpActionResult Gettbl_User(int id)
@@ -59,9 +67,20 @@ namespace ArtsHubAPI.Controllers.Custom
                 .Include(b => b.tbl_Shipping)
                 .Include(b => b.tbl_ItemOrder)
                 .Include(b=>b.tbl_ArtistPost)
-                .Include(b => b.tbl_User1)
-                .Include(b => b.tbl_User2)
                 .SingleOrDefault(b => b.UserId == id);
+
+            if (tbl_User == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(tbl_User);
+        }
+
+        [ResponseType(typeof(tbl_User))]
+        public IHttpActionResult Gettbl_User_by_Role(char role)
+        {
+            List<tbl_User> tbl_User = db.tbl_User.Where(t => t.Role == role.ToString()).ToList();
 
             if (tbl_User == null)
             {

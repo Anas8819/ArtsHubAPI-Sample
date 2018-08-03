@@ -18,6 +18,7 @@ namespace DAL
         public tbl_ArtistPost()
         {
             this.tbl_ArtistPostDetail = new HashSet<tbl_ArtistPostDetail>();
+            this.tbl_PostNotification = new HashSet<tbl_PostNotification>();
         }
     
         public int PostId { get; set; }
@@ -27,5 +28,7 @@ namespace DAL
         public virtual tbl_User tbl_User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ArtistPostDetail> tbl_ArtistPostDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_PostNotification> tbl_PostNotification { get; set; }
     }
 }

@@ -88,13 +88,25 @@
     <Compile Include="tbl_Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_Complaint.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Follow.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_Item.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_ItemDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_ItemNotification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl_ItemOrder.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostNotification.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Shipping.cs">

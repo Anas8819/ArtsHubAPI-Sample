@@ -28,7 +28,7 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="AuctionDesc" ColumnName="AuctionDesc" />
           <ScalarProperty Name="StartingBid" ColumnName="StartingBid" />
-          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="AuctionStartDate" ColumnName="AuctionStartDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -70,16 +70,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Complaint">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Complaint">
+        <MappingFragment StoreEntitySet="tbl_Complaint">
+          <ScalarProperty Name="ComplaintId" ColumnName="ComplaintId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Follow">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_Follow">
+        <MappingFragment StoreEntitySet="tbl_Follow">
+          <ScalarProperty Name="FollowId" ColumnName="FollowId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_Item">
       <EntityTypeMapping TypeName="ArtsDBModel.tbl_Item">
         <MappingFragment StoreEntitySet="tbl_Item">
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="ItemId" ColumnName="ItemId" />
           <ScalarProperty Name="ItemName" ColumnName="ItemName" />
           <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,13 +111,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ItemNotification">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_ItemNotification">
+        <MappingFragment StoreEntitySet="tbl_ItemNotification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ViewTime" ColumnName="ViewTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbl_ItemOrder">
       <EntityTypeMapping TypeName="ArtsDBModel.tbl_ItemOrder">
         <MappingFragment StoreEntitySet="tbl_ItemOrder">
-          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="tbl_Item_ItemId" ColumnName="tbl_Item_ItemId" />
           <ScalarProperty Name="tbl_User_UserId" ColumnName="tbl_User_UserId" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PostNotification">
+      <EntityTypeMapping TypeName="ArtsDBModel.tbl_PostNotification">
+        <MappingFragment StoreEntitySet="tbl_PostNotification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ViewTime" ColumnName="ViewTime" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -117,11 +158,12 @@
     <EntitySetMapping Name="tbl_User">
       <EntityTypeMapping TypeName="ArtsDBModel.tbl_User">
         <MappingFragment StoreEntitySet="tbl_User">
-          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -136,13 +178,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="tbl_Follow" TypeName="ArtsDBModel.tbl_Follow" StoreEntitySet="tbl_Follow">
-      <EndProperty Name="tbl_User">
-        <ScalarProperty Name="UserId" ColumnName="tbl_User2_UserId" />
-      </EndProperty>
-      <EndProperty Name="tbl_User1">
-        <ScalarProperty Name="UserId" ColumnName="tbl_User1_UserId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

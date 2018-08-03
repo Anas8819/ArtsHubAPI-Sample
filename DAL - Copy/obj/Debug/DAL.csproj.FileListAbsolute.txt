@@ -1,0 +1,20 @@
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\DAL.dll.config
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\DAL.dll
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\DAL.pdb
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\EntityFramework.dll
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\EntityFramework.SqlServer.dll
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\EntityFramework.xml
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\bin\Debug\EntityFramework.SqlServer.xml
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\obj\Debug\DAL.dll
+F:\ASP.NET Projects 1-2-2018\ArtsHubAPI\DAL\obj\Debug\DAL.pdb
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\DAL.dll.config
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\DAL.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\DAL.pdb
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Debug\DAL.dll
+C:\Users\Anas\Desktop\temp api\ArtsHubAPI\DAL\obj\Debug\DAL.pdb

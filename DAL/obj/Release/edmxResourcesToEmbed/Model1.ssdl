@@ -26,7 +26,7 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="AuctionDesc" Type="varchar(max)" Nullable="false" />
     <Property Name="StartingBid" Type="varchar" MaxLength="12" Nullable="false" />
-    <Property Name="IsApproved" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="AuctionStartDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_AuctionDetial">
     <Key>
@@ -63,13 +63,22 @@
     <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="CategoryDesc" Type="varchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbl_Complaint">
+    <Key>
+      <PropertyRef Name="ComplaintId" />
+    </Key>
+    <Property Name="ComplaintId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_Follow">
     <Key>
-      <PropertyRef Name="tbl_User2_UserId" />
-      <PropertyRef Name="tbl_User1_UserId" />
+      <PropertyRef Name="FollowId" />
     </Key>
-    <Property Name="tbl_User2_UserId" Type="int" Nullable="false" />
-    <Property Name="tbl_User1_UserId" Type="int" Nullable="false" />
+    <Property Name="FollowId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ArtistId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_Item">
     <Key>
@@ -91,6 +100,16 @@
     <Property Name="ItemDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ItemImage" Type="varbinary(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbl_ItemNotification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="BuyerId" Type="int" Nullable="false" />
+    <Property Name="SellerId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="ViewTime" Type="datetime" />
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbl_ItemOrder">
     <Key>
       <PropertyRef Name="OrderId" />
@@ -99,6 +118,16 @@
     <Property Name="tbl_User_UserId" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_PostNotification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="ArtistId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ViewTime" Type="datetime" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_Shipping">
     <Key>
@@ -122,6 +151,7 @@
     <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Role" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="AspNetUserId" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_UserDetail">
     <Key>
@@ -229,6 +259,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbl_Complaint_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_Complaint" Type="Self.tbl_Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_Complaint">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_Follow_tbl_User">
     <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
     <End Role="tbl_Follow" Type="Self.tbl_Follow" Multiplicity="*" />
@@ -237,7 +279,7 @@
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="tbl_Follow">
-        <PropertyRef Name="tbl_User2_UserId" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -249,7 +291,7 @@
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="tbl_Follow">
-        <PropertyRef Name="tbl_User1_UserId" />
+        <PropertyRef Name="ArtistId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -277,6 +319,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbl_ItemNotification_tbl_Item">
+    <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="1" />
+    <End Role="tbl_ItemNotification" Type="Self.tbl_ItemNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Item">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="tbl_ItemNotification">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ItemNotification_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_ItemNotification" Type="Self.tbl_ItemNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ItemNotification">
+        <PropertyRef Name="BuyerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ItemNotification_tbl_User1">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_ItemNotification" Type="Self.tbl_ItemNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_ItemNotification">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbl_ItemOrder_tbl_Item">
     <End Role="tbl_Item" Type="Self.tbl_Item" Multiplicity="1" />
     <End Role="tbl_ItemOrder" Type="Self.tbl_ItemOrder" Multiplicity="*" />
@@ -298,6 +376,42 @@
       </Principal>
       <Dependent Role="tbl_ItemOrder">
         <PropertyRef Name="tbl_User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_PostNotification_tbl_ArtistPost">
+    <End Role="tbl_ArtistPost" Type="Self.tbl_ArtistPost" Multiplicity="1" />
+    <End Role="tbl_PostNotification" Type="Self.tbl_PostNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ArtistPost">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="tbl_PostNotification">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_PostNotification_tbl_User">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_PostNotification" Type="Self.tbl_PostNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_PostNotification">
+        <PropertyRef Name="ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_PostNotification_tbl_User1">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="1" />
+    <End Role="tbl_PostNotification" Type="Self.tbl_PostNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_PostNotification">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -345,10 +459,13 @@
     <EntitySet Name="tbl_AuctionOrder" EntityType="Self.tbl_AuctionOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Bid" EntityType="Self.tbl_Bid" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Complaint" EntityType="Self.tbl_Complaint" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Follow" EntityType="Self.tbl_Follow" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Item" EntityType="Self.tbl_Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ItemDetail" EntityType="Self.tbl_ItemDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ItemNotification" EntityType="Self.tbl_ItemNotification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ItemOrder" EntityType="Self.tbl_ItemOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_PostNotification" EntityType="Self.tbl_PostNotification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Shipping" EntityType="Self.tbl_Shipping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_UserDetail" EntityType="Self.tbl_UserDetail" Schema="dbo" store:Type="Tables" />
@@ -384,6 +501,10 @@
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_Bid" EntitySet="tbl_Bid" />
     </AssociationSet>
+    <AssociationSet Name="FK_tbl_Complaint_tbl_User" Association="Self.FK_tbl_Complaint_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Complaint" EntitySet="tbl_Complaint" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_Follow_tbl_User" Association="Self.FK_tbl_Follow_tbl_User">
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_Follow" EntitySet="tbl_Follow" />
@@ -400,6 +521,18 @@
       <End Role="tbl_Item" EntitySet="tbl_Item" />
       <End Role="tbl_ItemDetail" EntitySet="tbl_ItemDetail" />
     </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemNotification_tbl_Item" Association="Self.FK_tbl_ItemNotification_tbl_Item">
+      <End Role="tbl_Item" EntitySet="tbl_Item" />
+      <End Role="tbl_ItemNotification" EntitySet="tbl_ItemNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemNotification_tbl_User" Association="Self.FK_tbl_ItemNotification_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ItemNotification" EntitySet="tbl_ItemNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ItemNotification_tbl_User1" Association="Self.FK_tbl_ItemNotification_tbl_User1">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_ItemNotification" EntitySet="tbl_ItemNotification" />
+    </AssociationSet>
     <AssociationSet Name="FK_tbl_ItemOrder_tbl_Item" Association="Self.FK_tbl_ItemOrder_tbl_Item">
       <End Role="tbl_Item" EntitySet="tbl_Item" />
       <End Role="tbl_ItemOrder" EntitySet="tbl_ItemOrder" />
@@ -407,6 +540,18 @@
     <AssociationSet Name="FK_tbl_ItemOrder_tbl_User" Association="Self.FK_tbl_ItemOrder_tbl_User">
       <End Role="tbl_User" EntitySet="tbl_User" />
       <End Role="tbl_ItemOrder" EntitySet="tbl_ItemOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_PostNotification_tbl_ArtistPost" Association="Self.FK_tbl_PostNotification_tbl_ArtistPost">
+      <End Role="tbl_ArtistPost" EntitySet="tbl_ArtistPost" />
+      <End Role="tbl_PostNotification" EntitySet="tbl_PostNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_PostNotification_tbl_User" Association="Self.FK_tbl_PostNotification_tbl_User">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_PostNotification" EntitySet="tbl_PostNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_PostNotification_tbl_User1" Association="Self.FK_tbl_PostNotification_tbl_User1">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_PostNotification" EntitySet="tbl_PostNotification" />
     </AssociationSet>
     <AssociationSet Name="FK_tbl_Shipping_tbl_Item" Association="Self.FK_tbl_Shipping_tbl_Item">
       <End Role="tbl_Item" EntitySet="tbl_Item" />

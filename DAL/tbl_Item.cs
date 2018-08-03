@@ -18,6 +18,7 @@ namespace DAL
         public tbl_Item()
         {
             this.tbl_ItemDetail = new HashSet<tbl_ItemDetail>();
+            this.tbl_ItemNotification = new HashSet<tbl_ItemNotification>();
             this.tbl_ItemOrder = new HashSet<tbl_ItemOrder>();
             this.tbl_Shipping = new HashSet<tbl_Shipping>();
         }
@@ -33,6 +34,8 @@ namespace DAL
         public virtual tbl_Category tbl_Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ItemDetail> tbl_ItemDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ItemNotification> tbl_ItemNotification { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ItemOrder> tbl_ItemOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

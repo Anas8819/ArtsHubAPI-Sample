@@ -32,9 +32,13 @@ namespace DAL
         public virtual DbSet<tbl_AuctionOrder> tbl_AuctionOrder { get; set; }
         public virtual DbSet<tbl_Bid> tbl_Bid { get; set; }
         public virtual DbSet<tbl_Category> tbl_Category { get; set; }
+        public virtual DbSet<tbl_Complaint> tbl_Complaint { get; set; }
+        public virtual DbSet<tbl_Follow> tbl_Follow { get; set; }
         public virtual DbSet<tbl_Item> tbl_Item { get; set; }
         public virtual DbSet<tbl_ItemDetail> tbl_ItemDetail { get; set; }
+        public virtual DbSet<tbl_ItemNotification> tbl_ItemNotification { get; set; }
         public virtual DbSet<tbl_ItemOrder> tbl_ItemOrder { get; set; }
+        public virtual DbSet<tbl_PostNotification> tbl_PostNotification { get; set; }
         public virtual DbSet<tbl_Shipping> tbl_Shipping { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
         public virtual DbSet<tbl_UserDetail> tbl_UserDetail { get; set; }

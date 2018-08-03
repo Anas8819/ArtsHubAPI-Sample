@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb807cd9673f43708bf84583e278b3a7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ArtistPost" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ArtistPostDetail" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Auction" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_AuctionDetial" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_AuctionOrder" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Bid" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Category" Width="1.5" PointX="4.5" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Complaint" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Follow" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Item" Width="1.5" PointX="6.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ItemDetail" Width="1.5" PointX="9" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ItemNotification" Width="1.5" PointX="6" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_ItemOrder" Width="1.5" PointX="9" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_PostNotification" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_Shipping" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_User" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtsDBModel.tbl_UserDetail" Width="1.5" PointX="3" PointY="32.625" IsExpanded="true" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ArtistPost_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ArtistPostDetail_tbl_ArtistPost" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_PostNotification_tbl_ArtistPost" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Auction_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionDetial_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionOrder_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Bid_tbl_Auction" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_AuctionOrder_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Bid_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Item_tbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Complaint_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Follow_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Follow_tbl_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemDetail_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemNotification_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemOrder_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Shipping_tbl_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemNotification_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemNotification_tbl_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_ItemOrder_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_PostNotification_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_PostNotification_tbl_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_Shipping_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ArtsDBModel.FK_tbl_UserDetail_tbl_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

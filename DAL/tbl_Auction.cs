@@ -28,7 +28,7 @@ namespace DAL
         public int UserId { get; set; }
         public string AuctionDesc { get; set; }
         public string StartingBid { get; set; }
-        public string IsApproved { get; set; }
+        public System.DateTime AuctionStartDate { get; set; }
     
         public virtual tbl_User tbl_User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

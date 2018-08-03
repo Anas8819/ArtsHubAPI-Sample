@@ -21,10 +21,15 @@ namespace DAL
             this.tbl_Auction = new HashSet<tbl_Auction>();
             this.tbl_AuctionOrder = new HashSet<tbl_AuctionOrder>();
             this.tbl_Bid = new HashSet<tbl_Bid>();
+            this.tbl_Complaint = new HashSet<tbl_Complaint>();
+            this.tbl_Follow = new HashSet<tbl_Follow>();
+            this.tbl_Follow1 = new HashSet<tbl_Follow>();
+            this.tbl_ItemNotification = new HashSet<tbl_ItemNotification>();
+            this.tbl_ItemNotification1 = new HashSet<tbl_ItemNotification>();
             this.tbl_ItemOrder = new HashSet<tbl_ItemOrder>();
+            this.tbl_PostNotification = new HashSet<tbl_PostNotification>();
+            this.tbl_PostNotification1 = new HashSet<tbl_PostNotification>();
             this.tbl_Shipping = new HashSet<tbl_Shipping>();
-            this.tbl_User1 = new HashSet<tbl_User>();
-            this.tbl_User2 = new HashSet<tbl_User>();
         }
     
         public int UserId { get; set; }
@@ -32,6 +37,7 @@ namespace DAL
         public string Username { get; set; }
         public string Role { get; set; }
         public string AspNetUserId { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ArtistPost> tbl_ArtistPost { get; set; }
@@ -42,13 +48,23 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Bid> tbl_Bid { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Complaint> tbl_Complaint { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Follow> tbl_Follow { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Follow> tbl_Follow1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ItemNotification> tbl_ItemNotification { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_ItemNotification> tbl_ItemNotification1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ItemOrder> tbl_ItemOrder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_PostNotification> tbl_PostNotification { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_PostNotification> tbl_PostNotification1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Shipping> tbl_Shipping { get; set; }
         public virtual tbl_UserDetail tbl_UserDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_User> tbl_User1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_User> tbl_User2 { get; set; }
     }
 }

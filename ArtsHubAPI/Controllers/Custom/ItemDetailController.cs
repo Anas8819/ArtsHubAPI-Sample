@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DAL;
+using System.IO;
 
 namespace ArtsHubAPI.Controllers.Custom
 {
@@ -37,7 +38,7 @@ namespace ArtsHubAPI.Controllers.Custom
         //}
 
         // GET: api/ItemDetail/5
-        [ResponseType(typeof(tbl_ItemDetail))]
+        [ResponseType(typeof(ArtsHubAPI.Models.ItemConversionModel))]
         public IHttpActionResult Gettbl_ItemDetail_by_Item(int id)
         {
             tbl_ItemDetail tbl_ItemDetail = db.tbl_ItemDetail.FirstOrDefault(t => t.ItemId == id);
@@ -45,6 +46,19 @@ namespace ArtsHubAPI.Controllers.Custom
             {
                 return NotFound();
             }
+            byte[] buffer = tbl_ItemDetail.ItemImage;
+            ArtsHubAPI.Models.ItemConversionModel UserConversionModel = new Models.ItemConversionModel();
+            string s = System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+            if (s != null)
+            {
+                UserConversionModel.ItemImage = s;
+            }
+            else
+            {
+                return BadRequest();
+            }
+            UserConversionModel.ItemDetailId = tbl_ItemDetail.ItemDetailId;
+            UserConversionModel.ItemId = tbl_ItemDetail.ItemId;
 
             return Ok(tbl_ItemDetail);
         }
@@ -85,18 +99,60 @@ namespace ArtsHubAPI.Controllers.Custom
         //}
 
         // POST: api/ItemDetail
-        [ResponseType(typeof(tbl_ItemDetail))]
-        public IHttpActionResult Posttbl_ItemDetail(tbl_ItemDetail tbl_ItemDetail)
+        [ResponseType(typeof(ArtsHubAPI.Models.ItemConversionModel))]
+        public IHttpActionResult Posttbl_ItemDetail(ArtsHubAPI.Models.ItemConversionModel UserConversionModel)
         {
+
+            tbl_ItemDetail tbl_UserDetail = new tbl_ItemDetail();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.tbl_ItemDetail.Add(tbl_ItemDetail);
-            db.SaveChanges();
+            tbl_UserDetail.ItemDetailId = UserConversionModel.ItemDetailId;
+            tbl_UserDetail.ItemId = UserConversionModel.ItemId;
+            byte[] buffer = null;
+            using (var ms = new MemoryStream())
+            {
+                buffer = System.Text.Encoding.UTF8.GetBytes(UserConversionModel.ItemImage);
+            }
+            if (buffer != null)
+            {
+                tbl_UserDetail.ItemImage = buffer;
+            }
+            else
+            {
+                return BadRequest();
+            }
+            db.tbl_ItemDetail.Add(tbl_UserDetail);
 
-            return CreatedAtRoute("DefaultApi", new { id = tbl_ItemDetail.ItemDetailId }, tbl_ItemDetail);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (tbl_ItemDetailExists(tbl_UserDetail.ItemId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            //db.tbl_ItemDetail.Add(tbl_ItemDetail);
+            //db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = tbl_UserDetail.ItemDetailId }, tbl_UserDetail);
         }
 
         //// DELETE: api/ItemDetail/5
